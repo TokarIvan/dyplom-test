@@ -1,20 +1,27 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Отримуємо дані з форми
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $message = $_POST['message'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = $_POST["name"];
+  $email = $_POST["email"];
+  $message = $_POST["message"];
 
-  // Параметри для надсилання пошти
-  $to = 'gerkyles21@gmail.com'; // Введіть вашу електронну адресу
-  $subject = 'Нове повідомлення з форми сайту';
-  $body = "Ім'я: $name\nЕлектронна адреса: $email\nПовідомлення: $message";
+  $to = "gerkyles21@gmail.com"; // Введіть свою адресу електронної пошти для отримання повідомлень
+  $subject = "Нове повідомлення з форми";
 
-  // Надсилаємо пошту
-  if (mail($to, $subject, $body)) {
-    echo 'Повідомлення надіслано успішно!';
+  $headers = "From: $name <$email>" . "\r\n";
+  $headers .= "Reply-To: $email" . "\r\n";
+  $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+
+  $mailBody = "
+    <h2>Нове повідомлення</h2>
+    <p><strong>Ім'я:</strong> $name</p>
+    <p><strong>Email:</strong> $email</p>
+    <p><strong>Повідомлення:</strong> $message</p>
+  ";
+
+  if (mail($to, $subject, $mailBody, $headers)) {
+    echo "Повідомлення успішно надіслано.";
   } else {
-    echo 'Помилка при надсиланні повідомлення.';
+    echo "Виникла помилка при відправці повідомлення.";
   }
 }
 ?>
