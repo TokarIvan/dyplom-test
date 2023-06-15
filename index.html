@@ -1,16 +1,6 @@
-<!-- index.html -->
-
-<!-- HTML форма -->
-<form method="post" action="send_email.php">
-    <label for="name">Ім'я:</label>
-    <input type="text" name="name" id="name" required>
-  
-    <label for="email">Електронна адреса:</label>
-    <input type="email" name="email" id="email" required>
-  
-    <label for="message">Повідомлення:</label>
-    <textarea name="message" id="message" required></textarea>
-  
-    <button type="submit">Надіслати</button>
-  </form>
-  
+<form action="send_email.php" method="POST">
+  <input type="text" name="name" placeholder="Ім'я" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <textarea name="message" placeholder="Повідомлення" required></textarea>
+  <button type="submit">Відправити</button>
+</form>
